@@ -1,0 +1,1 @@
+gcc main.c manage.c interface.c crack.c -lzip -o program

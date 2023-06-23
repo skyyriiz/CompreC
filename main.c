@@ -8,18 +8,25 @@
 #include "crack.h"
 #include "interface.h"
 
-
-
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
     int opt;
-    while ((opt = getopt(argc, argv, "ho:bdpeic:")) != -1){
+    char fileToZip[256] = "";
+
+    while ((opt = getopt(argc, argv, "ho:bdpeicf:")) != -1) {
+        char* optarg_value = optarg;
+
         switch (opt) {
             case 'h':
                 printFile("help.txt");
                 break;
             case 'o':
-                //printf("o");
-                printf("%s", optarg);
+                if (optarg != NULL) {
+                    char* archiveName = optarg;
+                    printArchiveContent(archiveName);
+                } else {
+                    fprintf(stderr, "Veuillez spécifier un nom d'archive.\n");
+                }
+                break;
                 break;
             case 'b':
                 printf("b");
@@ -30,19 +37,34 @@ int main(int argc, char *argv[]){
             case 'p':
                 printf("p");
                 break;
-            case 'e':
+            case 'e':S
                 printf("e");
                 break;
             case 'i':
                 printf("i");
                 break;
             case 'c':
-                createZip(optarg);
+                if (optind < argc) {
+                    strncpy(fileToZip, argv[optind], sizeof(fileToZip) - 1);
+                    fileToZip[sizeof(fileToZip) - 1] = '\0';  // Assurez-vous de terminer la chaîne de caractères
+
+                    if (optind + 1 < argc) {
+                        createZip(fileToZip, argv[optind + 1]);
+                    } else {
+                        fprintf(stderr, "Veuillez spécifier un nom pour l'archive.\n");
+                    }
+                } else {
+                    fprintf(stderr, "Veuillez spécifier un fichier ou un dossier à compresser.\n");
+                }
+                break;
+            case 'f':
+                printf("f");
                 break;
             default:
                 printf("h");
                 return 0;
         }
     }
+
     return 0;
 }

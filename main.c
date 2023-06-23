@@ -48,18 +48,7 @@ int main(int argc, char *argv[]) {
                 printf("i");
                 break;
             case 'c':
-                if (optind < argc) {
-                    strncpy(fileToZip, argv[optind], sizeof(fileToZip) - 1);
-                    fileToZip[sizeof(fileToZip) - 1] = '\0';
-
-                    if (optind + 1 < argc) {
-                        createZip(fileToZip, argv[optind + 1]);
-                    } else {
-                        fprintf(stderr, "Veuillez spécifier un nom pour l'archive.\n");
-                    }
-                } else {
-                    fprintf(stderr, "Veuillez spécifier un fichier ou un dossier à compresser.\n");
-                }
+                createZip("test", "archive");
                 break;
             case 'f':
                 printf("f");
@@ -72,4 +61,3 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-

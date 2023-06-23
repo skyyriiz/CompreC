@@ -99,7 +99,7 @@ void createZip(const char* path, const char* archiveName) {
         }
     }
 
-    // Compression d'un dossier
+        // Compression d'un dossier
     else {
         DIR *dir = opendir(path);
         if (dir == NULL) {

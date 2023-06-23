@@ -31,7 +31,7 @@ void printFile(char *filename) {
 
 
 void createZip(const char* path, const char* archiveName) {
-    // Ajoute l'extension .zip si elle n'est pas déjà présente
+    // ajoute l'extension .zip si elle n'est pas déjà présente
     char zipExtension[5] = ".zip";
     char fullArchiveName[strlen(archiveName) + strlen(zipExtension) + 1];
     strcpy(fullArchiveName, archiveName);
@@ -51,14 +51,14 @@ void createZip(const char* path, const char* archiveName) {
         return;
     }
 
-    // Vérifie si le chemin donné est un fichier ou un dossier
+    // vérifie si le chemin donné est un fichier ou un dossier
     int isDirectory = 0;
     if (access(path, F_OK) == 0) {
         // Le chemin existe
         if (access(path, R_OK) == 0) {
             // Le chemin est accessible en lecture
             if (access(path, X_OK) == 0) {
-                // Le chemin est exécutable, donc probablement un dossier
+                // Le chemin est exécutable =  probablement un dossier
                 isDirectory = 1;
             }
         } else {
@@ -99,7 +99,7 @@ void createZip(const char* path, const char* archiveName) {
         }
     }
 
-        // Compression d'un dossier
+    // Compression d'un dossier
     else {
         DIR *dir = opendir(path);
         if (dir == NULL) {
@@ -148,6 +148,57 @@ int createZipEntry(struct zip *zipfile, const char *entryPath, const char *entry
     return 1;
 }
 
+void extractArchive(const char* archiveName) {
+    struct zip *zipfile;
+    zipfile = zip_open(archiveName, 0, NULL);
+    if (zipfile == NULL) {
+        fprintf(stderr, "Impossible d'ouvrir l'archive '%s'\n", archiveName);
+        return;
+    }
+
+    int numFiles = zip_get_num_entries(zipfile, 0);
+    if (numFiles == -1) {
+        fprintf(stderr, "Erreur lors de la récupération du nombre de fichiers dans l'archive\n");
+        zip_close(zipfile);
+        return;
+    }
+
+    for (int i = 0; i < numFiles; i++) {
+        struct zip_stat fileStat;
+        if (zip_stat_index(zipfile, i, 0, &fileStat) == -1) {
+            fprintf(stderr, "Impossible de récupérer les informations sur le fichier %d dans l'archive\n", i);
+            continue;
+        }
+
+        printf("Extraction du fichier %d : %s\n", i, fileStat.name);
+
+        zip_file_t *file = zip_fopen_index(zipfile, i, 0);
+        if (file == NULL) {
+            fprintf(stderr, "Erreur lors de l'ouverture du fichier %d dans l'archive\n", i);
+            continue;
+        }
+
+        char buffer[1024];
+        ssize_t bytesRead;
+        FILE *outputFile = fopen(fileStat.name, "wb");
+        if (outputFile == NULL) {
+            fprintf(stderr, "Erreur lors de la création du fichier %s\n", fileStat.name);
+            zip_fclose(file);
+            continue;
+        }
+
+        while ((bytesRead = zip_fread(file, buffer, sizeof(buffer))) > 0) {
+            fwrite(buffer, 1, bytesRead, outputFile);
+        }
+
+        fclose(outputFile);
+        zip_fclose(file);
+    }
+
+    zip_close(zipfile);
+}
+
+/*
 void printArchiveContent(const char* archiveName) {
     struct zip *zipfile;
     int err = 0;
@@ -174,3 +225,4 @@ void printArchiveContent(const char* archiveName) {
         fprintf(stderr, "Erreur lors de la fermeture de l'archive : %s\n", zip_strerror(zipfile));
     }
 }
+*/

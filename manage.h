@@ -9,6 +9,8 @@ void createZip(const char* path, const char* archiveName);
 int createZipEntry(struct zip *zipfile, const char *entryPath, const char *entryName);
 void printArchiveContent(const char* archiveName);
 void printFile(char *filename);
+void extractArchive(const char* archiveName);
+int openZipWithPassword(const char* archiveName, const char* password);
 void openZip(const char* fileToOpen);
 void compressFolder(const char* folderName);
 void addDirectoryToZip(struct zip *archive, const char *directoryPath, const char *parentPath);

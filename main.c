@@ -20,13 +20,12 @@ int main(int argc, char *argv[]) {
                 printFile("help.txt");
                 break;
             case 'o':
-                if (optarg != NULL) {
+                /*if (optarg != NULL) {
                     char* archiveName = optarg;
                     printArchiveContent(archiveName);
                 } else {
                     fprintf(stderr, "Veuillez spécifier un nom d'archive.\n");
-                }
-                break;
+                }*/
                 break;
             case 'b':
                 printf("b");
@@ -37,16 +36,21 @@ int main(int argc, char *argv[]) {
             case 'p':
                 printf("p");
                 break;
-            case 'e':S
-                printf("e");
+            case 'e':
+                if (optind < argc) {
+                    extractArchive(argv[optind]);
+                } else {
+                    fprintf(stderr, "Veuillez spécifier un fichier ou un dossier à extraire.\n");
+                }
                 break;
+
             case 'i':
                 printf("i");
                 break;
             case 'c':
                 if (optind < argc) {
                     strncpy(fileToZip, argv[optind], sizeof(fileToZip) - 1);
-                    fileToZip[sizeof(fileToZip) - 1] = '\0';  // Assurez-vous de terminer la chaîne de caractères
+                    fileToZip[sizeof(fileToZip) - 1] = '\0';
 
                     if (optind + 1 < argc) {
                         createZip(fileToZip, argv[optind + 1]);
@@ -68,3 +72,4 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+

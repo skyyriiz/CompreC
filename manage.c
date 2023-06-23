@@ -160,7 +160,7 @@ void extractArchive(const char* archiveName) {
     if (numFiles == -1) {
         fprintf(stderr, "Erreur lors de la récupération du nombre de fichiers dans l'archive\n");
         zip_close(zipfile);
-        return;
+
     }
 
     for (int i = 0; i < numFiles; i++) {

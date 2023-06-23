@@ -26,8 +26,8 @@ int main(int argc, char *argv[]){
             {"create",     required_argument, 0,  'c' }
 
     };
-    int long_index =0;
-    char file_name[64];
+    int long_index=0;
+    char file_name[128];
     while ((opt = getopt_long(argc, argv, "hf:b:d:p:e:o:i:c:", long_options, &long_index)) != -1){
         switch (opt) {
             case 'h':
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
                 strcpy(file_name, optarg);
                 break;
             case 'b':
-                printf("b");
+                printf("b\n");
                 break;
             case 'd':
                 printf("d");
@@ -52,7 +52,7 @@ int main(int argc, char *argv[]){
                 printf("%s", optarg);
                 break;
             case 'i':
-                includeFileToZip(file_name, optarg);
+                includeFileToZip(optarg, file_name, basename(file_name));
                 break;
             case 'c':
                 createZip(optarg);

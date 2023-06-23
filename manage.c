@@ -7,14 +7,30 @@
 
 #include "manage.h"
 
-void includeFileToZip(char *path_to_file, char *path_to_zip){
-    int err = 0;
-    struct zip *f_zip = zip_open(path_to_zip, ZIP_CHECKCONS, &err);
-    struct zip_source * n_zip = zip_source_file(f_zip,path_to_file, (off_t)0, (off_t)0);
-    zip_add(f_zip, basename(path_to_zip), n_zip);
-    zip_close(f_zip);
-    zip_source_free(n_zip);
+
+int includeFileToZip(const char* zip_file, const char* file, const char* end_filename) {
+    struct zip* archive = zip_open(zip_file, ZIP_CREATE, NULL);
+    if (!archive) {
+        return -1;
+    }
+
+    struct zip_source* source = zip_source_file(archive, file, 0, -1);
+    if (!source) {
+        zip_close(archive);
+        return -1;
+    }
+
+    const char* file_path = end_filename;
+    int index = zip_name_locate(archive, file_path, 0);
+    if (index >= 0) {
+        zip_delete(archive, index);
+    }
+
+    int result = zip_add(archive, file_path, source);
+    zip_close(archive);
+    return result;
 }
+
 
 void printFile(char *filename){
     FILE *fptr;

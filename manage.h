@@ -7,6 +7,6 @@
 
 int createZip(char *path);
 void printFile(char *filename);
-void includeFileToZip(char *path_to_file, char *path_to_zip);
+int includeFileToZip(const char* zip_file, const char* file, const char* end_filename);
 
 #endif //C_MANAGE_H

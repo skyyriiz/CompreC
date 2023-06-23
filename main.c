@@ -28,6 +28,7 @@ int main(int argc, char *argv[]){
     };
     int long_index=0;
     char file_name[128];
+    char fileToZip[256] = "";
     while ((opt = getopt_long(argc, argv, "hf:b:d:p:e:o:i:c:", long_options, &long_index)) != -1){
         switch (opt) {
             case 'h':
@@ -46,16 +47,36 @@ int main(int argc, char *argv[]){
                 printf("p");
                 break;
             case 'e':
-                printf("e");
+                if (optind < argc) {
+                    extractArchive(argv[optind]);
+                } else {
+                    fprintf(stderr, "Veuillez spécifier un fichier ou un dossier à extraire.\n");
+                }
                 break;
             case 'o':
-                printf("%s", optarg);
+                /*if (optarg != NULL) {
+                    char* archiveName = optarg;
+                    printArchiveContent(archiveName);
+                } else {
+                    fprintf(stderr, "Veuillez spécifier un nom d'archive.\n");
+                }*/
                 break;
             case 'i':
                 includeFileToZip(optarg, file_name, basename(file_name));
                 break;
             case 'c':
-                createZip(optarg);
+                if (optind < argc) {
+                    strncpy(fileToZip, argv[optind], sizeof(fileToZip) - 1);
+                    fileToZip[sizeof(fileToZip) - 1] = '\0';
+
+                    if (optind + 1 < argc) {
+                        createZip(fileToZip, file_name);
+                    } else {
+                        fprintf(stderr, "Veuillez spécifier un nom pour l'archive.\n");
+                    }
+                } else {
+                    fprintf(stderr, "Veuillez spécifier un fichier ou un dossier à compresser.\n");
+                }
                 break;
             default:
                 printf("h");

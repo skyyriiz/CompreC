@@ -28,6 +28,7 @@ int main(int argc, char *argv[]) {
     char file_name[128];
     char fileToZip[256] = "";
 
+
     char* optarg_value = optarg;
     while ((opt = getopt_long(argc, argv, "hf:b:d:p:e:o:i:c:", long_options, &long_index)) != -1) {
         switch (opt) {

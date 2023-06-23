@@ -198,6 +198,29 @@ void extractArchive(const char* archiveName) {
     zip_close(zipfile);
 }
 
+int includeFileToZip(const char* zip_file, const char* file, const char* end_filename) {
+    struct zip* archive = zip_open(zip_file, ZIP_CREATE, NULL);
+    if (!archive) {
+        return -1;
+    }
+
+    struct zip_source* source = zip_source_file(archive, file, 0, -1);
+    if (!source) {
+        zip_close(archive);
+        return -1;
+    }
+
+    const char* file_path = end_filename;
+    int index = zip_name_locate(archive, file_path, 0);
+    if (index >= 0) {
+        zip_delete(archive, index);
+    }
+
+    int result = zip_add(archive, file_path, source);
+    zip_close(archive);
+    return result;
+}
+
 /*
 void printArchiveContent(const char* archiveName) {
     struct zip *zipfile;

@@ -52,21 +52,16 @@ int main(int argc, char *argv[]) {
                 printf("p");
                 break;
             case 'e':
-                if (optind < argc) {
-                    extractArchive(argv[optind]);
-                } else {
-                    fprintf(stderr, "Veuillez spécifier un fichier ou un dossier à extraire.\n");
-                }
+                extractArchive(optarg);
                 break;
-
             case 'i':
-                printf("i");
+                includeFileToZip(optarg, file_name, basename(file_name));
                 break;
             case 'c':
-                createZip("test", "archive");
+                createZip(optarg, file_name);
                 break;
             case 'f':
-                printf("f");
+                strcpy(file_name, optarg);
                 break;
             default:
                 printf("h");

@@ -9,7 +9,7 @@ void createZip(const char* path, const char* archiveName);
 int createZipEntry(struct zip *zipfile, const char *entryPath, const char *entryName);
 void printArchiveContent(const char* archiveName);
 void printFile(char *filename);
-void extractArchive(const char* archiveName);
+void extractArchive(const char* archiveName, const char* password);
 int includeFileToZip(const char* zip_file, const char* file, const char* end_filename);
 int openZipWithPassword(const char* archiveName, const char* password);
 void openZip(const char* fileToOpen);

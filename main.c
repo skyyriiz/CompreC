@@ -10,6 +10,8 @@
 #include "crack.h"
 #include "interface.h"
 
+
+
 int main(int argc, char *argv[]) {
     int opt;
     static struct option long_options[] = {
@@ -27,9 +29,9 @@ int main(int argc, char *argv[]) {
     int long_index=0;
     char file_name[128];
     char fileToZip[256] = "";
+    char password[256];
 
 
-    char* optarg_value = optarg;
     while ((opt = getopt_long(argc, argv, "hf:b:d:p:e:o:i:c:", long_options, &long_index)) != -1) {
         switch (opt) {
             case 'h':
@@ -50,10 +52,10 @@ int main(int argc, char *argv[]) {
                 printf("d");
                 break;
             case 'p':
-                printf("p");
+                strcpy(password, optarg);
                 break;
             case 'e':
-                extractArchive(optarg);
+                extractArchive(optarg, password);
                 break;
             case 'i':
                 includeFileToZip(optarg, file_name, basename(file_name));
@@ -65,7 +67,7 @@ int main(int argc, char *argv[]) {
                 strcpy(file_name, optarg);
                 break;
             default:
-                printf("h");
+                printf("h\n");
                 return 0;
         }
     }

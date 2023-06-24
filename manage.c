@@ -148,7 +148,7 @@ int createZipEntry(struct zip *zipfile, const char *entryPath, const char *entry
     return 1;
 }
 
-void extractArchive(const char* archiveName) {
+void extractArchive(const char* archiveName, const char *password) {
     struct zip *zipfile;
     zipfile = zip_open(archiveName, 0, NULL);
     if (zipfile == NULL) {
@@ -172,7 +172,14 @@ void extractArchive(const char* archiveName) {
 
         printf("Extraction du fichier %d : %s\n", i, fileStat.name);
 
-        zip_file_t *file = zip_fopen_index(zipfile, i, 0);
+        zip_file_t *file;
+        if(strcmp(password, "")){
+            file = zip_fopen_index_encrypted(zipfile, i, 0, password);
+        }else{
+            printf("oui\n");
+            file = zip_fopen_index(zipfile, i, 0);
+        }
+
         if (file == NULL) {
             fprintf(stderr, "Erreur lors de l'ouverture du fichier %d dans l'archive\n", i);
             continue;

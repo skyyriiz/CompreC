@@ -1,7 +1,0 @@
- -h, Show this menu
- -o, Open a zip archive
- -b, Bruteforce a zip archive
- -d, Crack with a dictionary .txt file
- -p, Use this password
- -e, Extract this file
- -i, Include this file

@@ -72,6 +72,26 @@ void createZip(const char* path, const char* archiveName) {
         return;
     }
 
+    // Manage Passwords
+    char password[256];
+    printf("Do you want a password for the ZIP file ? \n(1 for yes, 2 for no)\n");
+    int choice;
+    scanf("%d",&choice);
+    if(choice == 1){
+        printf("Enter the password :");
+        scanf("%255s", password);
+    } else {
+        password[0] = '\0';
+    }
+
+    if (password[0] != '\0'){
+        if (zip_set_default_password(zipfile, password) < 0){
+            fprintf(stderr, "Error for setting up the password: %s\n", zip_strerror(zipfile));
+            zip_close(zipfile);
+            return;
+        }
+    }
+
     // Compression d'un fichier
     if (!isDirectory) {
         zip_source_t *source = zip_source_file(zipfile, path, 0, -1);

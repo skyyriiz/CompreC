@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
                 printf("i");
                 break;
             case 'c':
-                createZip("test", "archive");
+                createZip("test.txt", "archive");
                 break;
             case 'f':
                 printf("f");

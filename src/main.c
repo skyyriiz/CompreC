@@ -29,50 +29,53 @@ int main(int argc, char *argv[]) {
     };
     int long_index=0;
     char file_name[128];
-    char fileToZip[256] = "";
     char password[256];
 
     while ((opt = getopt_long(argc, argv, "hf:b:d:p:e:o:i:c:r:", long_options, &long_index)) != -1) {
         switch (opt) {
             case 'h':
+                // Display help menu
                 printFile("help.txt");
                 break;
             case 'o':
-                /*if (optarg != NULL) {
-                    char* archiveName = optarg;
-                    printArchiveContent(archiveName);
-                } else {
-                    fprintf(stderr, "Veuillez spécifier un nom d'archive.\n");
-                }*/
+                // Open the user interface
                 menu(optarg);
-
                 break;
             case 'b':
+                // WIP bruteforce
                 printf("b");
                 break;
             case 'd':
+                // WIP password cracking with dictionary
                 printf("d");
                 break;
             case 'p':
+                // Store password given by the user
                 strcpy(password, optarg);
                 break;
             case 'e':
+                // Extract archive in the current directory with password if one given
                 extractArchive(optarg, password);
                 break;
             case 'i':
+                // Include a file or directory in a given zip archive
                 includeElementToZip(optarg, file_name, basename(file_name), "");
                 break;
             case 'c':
+                // Create a zip archive from a file or folder
                 createZip(optarg, file_name);
                 break;
             case 'f':
+                // Store file's name given by the user
                 strcpy(file_name, optarg);
                 break;
             case 'r':
+                // Remove a file or folder and its elements in a zip archive
                 removeElementFromArchive(optarg, file_name);
                 break;
             default:
-                printf("h\n");
+                // Display help menu
+                printFile("help.txt");
                 return 0;
         }
     }

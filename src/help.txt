@@ -1,0 +1,10 @@
+ -h, --help         Show this menu
+ -f, --file         Select a file
+ -b, --bruteforce   Bruteforce a zip archive
+ -d, --dictionary   Crack with a dictionary .txt file
+ -p, --password     Use this password
+ -e, --extract      Extract this zip archive
+ -o, --open         Open the user interface
+ -i, --include      Include this file in a zip archive
+ -c, --create       Create a zip archive from a file or folder
+ -r, --remove       Remove a file or folder and its elements in a zip archive

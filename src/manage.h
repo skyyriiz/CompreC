@@ -1,5 +1,5 @@
 //
-// Created by oui on 21/06/23.
+// Header with all functions used to manage zip archives
 //
 
 #ifndef C_MANAGE_H

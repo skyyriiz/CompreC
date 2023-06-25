@@ -1,5 +1,5 @@
 //
-// Created by oui on 21/06/23.
+// Header with all functions used to manage user interface
 //
 
 #ifndef C_INTERFACE_H

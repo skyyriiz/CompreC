@@ -1,5 +1,5 @@
 //
-// Created by oui on 21/06/23.
+// Source with all functions used to manage user interface
 //
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,6 +12,7 @@
 #include "manage.h"
 
 void printMenu() {
+    // Program usage menu
     printf("\nWhat do you want to do with this file?\n");
     printf("1. Delete the file\n");
     printf("2. Rename the file\n");
@@ -21,6 +22,7 @@ void printMenu() {
 }
 
 void printMainMenu(){
+    // Main menu
     printf("\nWhat do you want to do?\n");
     printf("1. Extract\n");
     printf("2. Include a file\n");
@@ -30,6 +32,7 @@ void printMainMenu(){
 }
 
 void menu(char *zip) {
+    // Start menu
     struct zip *archive;
     int err;
     char new_name[256];
@@ -42,9 +45,11 @@ void menu(char *zip) {
 
 
     while(exitMenu == 0) {
+        // Main loop
         printf("\n\n");
         archive = zip_open(zip, 0, &err);
         if (archive == NULL) {
+            // If the archive couldn't be opened
             printf("Impossible to open the ZIP file: %s\n", zip_strerror(archive));
             exit(EXIT_FAILURE);
         }
@@ -53,6 +58,7 @@ void menu(char *zip) {
         int i;
 
         for (i = 0; i < num_files; i++) {
+            // Print each file and folder in the archive
             const char *file_name = zip_get_name(archive, i, 0);
             printf("%d ", i);
             printf("- Fichier : %s\n", file_name);
@@ -123,6 +129,7 @@ void menu(char *zip) {
                 int file_index = -1;
 
                 for (i = 0; i < num_files; i++) {
+                    // Find the index of the wanted file
                     const char *file_name = zip_get_name(archive, i, 0);
                     if (strcmp(file_name, file_to_modify) == 0) {
                         file_index = i;

@@ -23,7 +23,7 @@ int extractZIPWithBruteForce(const char* zipFileName, const char* dictionaryFile
         return -1;
     }
 
-    // Open the dic
+    // Open the dic...
     FILE* dictionaryFile = fopen(dictionaryFileName, "r");
     if (!dictionaryFile) {
         printf("Impossible d'ouvrir le dictionnaire de mots de passe.\n");

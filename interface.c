@@ -7,7 +7,7 @@
 #include <string.h>
 #include <libgen.h>
 
-
+#include "crack.h"
 #include "interface.h"
 #include "manage.h"
 
@@ -40,6 +40,7 @@ void menu(char *zip) {
     char file_to_modify[256];
     int exitMenu = 0;
 
+    const char path[256] = "/home/mike/Documents/GitHub/CompreC/dick.txt";
 
     while(exitMenu == 0) {
         printf("\n\n");
@@ -72,9 +73,14 @@ void menu(char *zip) {
                 scanf("%d", &choice_password);
 
                 if (choice_extract == 1 && choice_password == 1) {
-                    printf("Write the password: ");
+                    /*printf("Write the password: ");
                     scanf("%s", password);
-                    extractArchive(zip, password);
+                    extractArchive(zip, password);*/
+                    if (extractZIPWithBruteForce(zip, path) == -1) {
+                        printf("Brute Force attack failed\n");
+                    } else {
+                        printf("Extraction done \n");
+                    }
                 } else if (choice_extract == 1 && choice_password == 0) {
                     extractArchive(zip, password);
                 } else if (choice_extract == 0 && choice_password == 0) {

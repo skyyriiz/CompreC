@@ -15,5 +15,6 @@ int openZipWithPassword(const char* archiveName, const char* password);
 void openZip(const char* fileToOpen);
 void compressFolder(const char* folderName);
 void addDirectoryToZip(struct zip *archive, const char *directoryPath, const char *parentPath);
+int removeElementFromArchive(const char* archivePath, const char* elementToRemove);
 
 #endif //C_MANAGE_H

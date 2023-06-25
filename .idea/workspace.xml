@@ -18,28 +18,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18eb0e50-81de-4608-8bbe-14b741595105" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/crack.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/crack.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/help.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/manage.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/manage.h" afterDir="false" />
+    <list default="true" id="18eb0e50-81de-4608-8bbe-14b741595105" name="Changes" comment="Preprod">
+      <change afterPath="$PROJECT_DIR$/dick.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/compile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/compile.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crack.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crack.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/help.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/crack.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/crack.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/crack.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/crack.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,8 +86,17 @@
       <workItem from="1687434579470" duration="637000" />
       <workItem from="1687457195448" duration="2106000" />
       <workItem from="1687459311577" duration="8769000" />
-      <workItem from="1687721093208" duration="8738000" />
+      <workItem from="1687721093208" duration="9324000" />
     </task>
+    <task id="LOCAL-00001" summary="Preprod">
+      <option name="closed" value="true" />
+      <created>1687729886072</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687729886072</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,5 +118,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Preprod" />
+    <option name="LAST_COMMIT_MESSAGE" value="Preprod" />
   </component>
 </project>

@@ -31,6 +31,8 @@ int main(int argc, char *argv[]) {
     char file_name[128];
     char password[256];
 
+    //const char path[256] = "/home/mike/Documents/GitHub/CompreC/dick.txt";
+
     while ((opt = getopt_long(argc, argv, "hf:b:d:p:e:o:i:c:r:", long_options, &long_index)) != -1) {
         switch (opt) {
             case 'h':
@@ -47,7 +49,12 @@ int main(int argc, char *argv[]) {
                 break;
             case 'd':
                 // WIP password cracking with dictionary
-                printf("d");
+                if (extractZIPWithBruteForce(optarg, file_name) == -1) {
+                    printf("Brute Force attack failed\n");
+                    return -1;
+                } else {
+                    printf("Extraction done \n");
+                }
                 break;
             case 'p':
                 // Store password given by the user

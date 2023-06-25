@@ -16,5 +16,6 @@ void openZip(const char* fileToOpen);
 void compressFolder(const char* folderName);
 void addDirectoryToZip(struct zip *archive, const char *directoryPath, const char *parentPath);
 int removeElementFromArchive(const char* archivePath, const char* elementToRemove);
+int includeElementToZip(const char* zip_file, const char* path, const char* entry_name, const char* dest);
 
 #endif //C_MANAGE_H

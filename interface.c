@@ -36,7 +36,7 @@ void menu(char *zip) {
 
     int choice_main;
     int choice_extract;
-    char *fileToAdd;
+    char fileToAdd[256];
     char file_to_modify[256];
     int exitMenu = 0;
 
@@ -86,7 +86,21 @@ void menu(char *zip) {
             case 2:
                 printf("Enter the path of the file that you want to add (+ the name of the file in it)\n");
                 scanf("%s", fileToAdd);
-                includeFileToZip(zip, fileToAdd, basename(fileToAdd));
+
+                int choiceDirectory;
+                printf("Where do you want to save in the archive? (In the root directory -> 0 / Other -> 1)\n");
+                scanf("%d", &choiceDirectory);
+
+                if(choiceDirectory == 0){
+                    includeElementToZip(zip, fileToAdd, basename(fileToAdd), "");
+                } else if (choiceDirectory == 1){
+                    char pathFinal[256];
+                    printf("What is the path where you want to put your file in this archive?\n");
+                    scanf("%s", pathFinal);
+                    includeElementToZip(zip, fileToAdd, basename(fileToAdd), pathFinal);
+                } else {
+                    printf("Wrong choice, try again.");
+                }
                 break;
             case 3:
                 printf("Enter the name of the file to modify: ");
@@ -137,8 +151,6 @@ void menu(char *zip) {
                             break;
 
                         case 3:
-
-
                             if (file == NULL) {
                                 printf("Impossible to open the zip file.\n");
                             } else {

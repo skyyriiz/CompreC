@@ -32,7 +32,6 @@ int main(int argc, char *argv[]) {
     char fileToZip[256] = "";
     char password[256];
 
-
     while ((opt = getopt_long(argc, argv, "hf:b:d:p:e:o:i:c:r:", long_options, &long_index)) != -1) {
         switch (opt) {
             case 'h':
@@ -61,7 +60,7 @@ int main(int argc, char *argv[]) {
                 extractArchive(optarg, password);
                 break;
             case 'i':
-                includeFileToZip(optarg, file_name, basename(file_name));
+                includeElementToZip(optarg, file_name, basename(file_name), "");
                 break;
             case 'c':
                 createZip(optarg, file_name);

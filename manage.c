@@ -6,8 +6,6 @@
 #include <errno.h>
 #include <dirent.h>
 #include <sys/stat.h>
-#include <archive.h>
-#include <archive_entry.h>
 
 #include "manage.h"
 
@@ -176,7 +174,7 @@ void extractArchive(const char* archiveName, const char *password) {
         if(strcmp(password, "")){
             file = zip_fopen_index_encrypted(zipfile, i, 0, password);
         }else{
-            printf("oui\n");
+            printf("Aucun mot de passe renseigné\n");
             file = zip_fopen_index(zipfile, i, 0);
         }
 

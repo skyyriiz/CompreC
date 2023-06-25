@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
             {"extract",    required_argument, 0,  'e' },
             {"open",       required_argument, 0,  'o' },
             {"include",    required_argument, 0,  'i' },
-            {"create",     required_argument, 0,  'c' }
+            {"create",     required_argument, 0,  'c' },
 
     };
     int long_index=0;
@@ -44,6 +44,8 @@ int main(int argc, char *argv[]) {
                 } else {
                     fprintf(stderr, "Veuillez spécifier un nom d'archive.\n");
                 }*/
+                menu(optarg);
+
                 break;
             case 'b':
                 printf("b");

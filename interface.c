@@ -97,9 +97,23 @@ void menu(char *zip) {
                     char pathFinal[256];
                     printf("What is the path where you want to put your file in this archive?\n");
                     scanf("%s", pathFinal);
-                    includeElementToZip(zip, fileToAdd, basename(fileToAdd), pathFinal);
+
+                    int choiceName;
+                    printf("Do you want to change the name of the file? (No -> 0 / Yes -> 1\n");
+                    scanf("%d", &choiceName);
+
+                    if(choiceName == 0){
+                        includeElementToZip(zip, fileToAdd, basename(fileToAdd), pathFinal);
+                    } else if(choiceName == 1){
+                        char addNewName[256];
+                        printf("Give his new name.\n");
+                        scanf("%s", addNewName);
+                        includeElementToZip(zip, fileToAdd, addNewName, pathFinal);
+                    } else {
+                        printf("Wrong choice, try again.\n");
+                    }
                 } else {
-                    printf("Wrong choice, try again.");
+                    printf("Wrong choice, try again.\n");
                 }
                 break;
             case 3:

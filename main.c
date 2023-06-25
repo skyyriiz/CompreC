@@ -21,7 +21,8 @@ int main(int argc, char *argv[]) {
             {"extract",    required_argument, 0,  'e' },
             {"open",       required_argument, 0,  'o' },
             {"include",    required_argument, 0,  'i' },
-            {"create",     required_argument, 0,  'c' }
+            {"create",     required_argument, 0,  'c' },
+            {"graphic",     required_argument, 0,  'g' }
 
     };
     int long_index=0;
@@ -29,7 +30,7 @@ int main(int argc, char *argv[]) {
     char fileToZip[256] = "";
 
     char* optarg_value = optarg;
-    while ((opt = getopt_long(argc, argv, "hf:b:d:p:e:o:i:c:", long_options, &long_index)) != -1) {
+    while ((opt = getopt_long(argc, argv, "hf:b:d:p:e:o:i:c:g:", long_options, &long_index)) != -1) {
         switch (opt) {
             case 'h':
                 printFile("help.txt");
@@ -67,6 +68,9 @@ int main(int argc, char *argv[]) {
                 break;
             case 'f':
                 printf("f");
+                break;
+            case 'g':
+                createZip();
                 break;
             default:
                 printf("h");

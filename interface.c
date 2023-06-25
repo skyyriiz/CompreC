@@ -15,7 +15,8 @@ void printMenu() {
     printf("\nWhat do you want to do with this file?\n");
     printf("1. Delete the file\n");
     printf("2. Rename the file\n");
-    printf("3. Leave the program\n");
+    printf("3. Extract the file\n");
+    printf("4. Leave the program\n");
     printf("Choose : ");
 }
 
@@ -23,7 +24,7 @@ void printMainMenu(){
     printf("\nWhat do you want to do?\n");
     printf("1. Extract\n");
     printf("2. Include a file\n");
-    printf("3: Select a file\n");
+    printf("3. Select a file\n");
     printf("4. Leave the program\n");
     printf("Choose : ");
 }
@@ -102,15 +103,18 @@ void menu(char *zip) {
                 }
 
                 if (file_index == -1) {
-                    printf("Le fichier spécifié n'a pas été trouvé dans le fichier ZIP.\n");
+                    printf("The file is not found\n");
                     zip_close(archive);
                     exit(EXIT_FAILURE);
                 }
 
                 int choice = 0;
                 while (choice != 3) {
+                    printf("%s", file_to_modify);
                     printMenu();
                     scanf("%d", &choice);
+                    struct zip_file *file = zip_fopen_index(archive, file_index, 0);
+                    int file_index = -1;
 
                     switch (choice) {
                         case 1:
@@ -133,6 +137,30 @@ void menu(char *zip) {
                             break;
 
                         case 3:
+
+
+                            if (file == NULL) {
+                                printf("Impossible to open the zip file.\n");
+                            } else {
+                                char new_file_name[512];
+                                snprintf(new_file_name, sizeof(new_file_name), "./%s", file_to_modify);
+                                FILE *output_file = fopen(new_file_name, "wb");
+                                if (output_file == NULL) {
+                                    printf("Impossible to create te file.\n");
+                                } else {
+                                    char buffer[1024];
+                                    int num_bytes;
+                                    while ((num_bytes = zip_fread(file, buffer, sizeof(buffer))) > 0) {
+                                        fwrite(buffer, 1, num_bytes, output_file);
+                                    }
+                                    fclose(output_file);
+                                    printf("The file get extracted.\n");
+                                }
+                                zip_fclose(file);
+                            }
+                            break;
+
+                        case 4:
                             printf("Done.\n");
                             break;
 

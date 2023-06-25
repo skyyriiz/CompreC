@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
             {"open",       required_argument, 0,  'o' },
             {"include",    required_argument, 0,  'i' },
             {"create",     required_argument, 0,  'c' },
+            {"remove",     required_argument, 0,  'r' }
 
     };
     int long_index=0;
@@ -32,7 +33,7 @@ int main(int argc, char *argv[]) {
     char password[256];
 
 
-    while ((opt = getopt_long(argc, argv, "hf:b:d:p:e:o:i:c:", long_options, &long_index)) != -1) {
+    while ((opt = getopt_long(argc, argv, "hf:b:d:p:e:o:i:c:r:", long_options, &long_index)) != -1) {
         switch (opt) {
             case 'h':
                 printFile("help.txt");
@@ -67,6 +68,9 @@ int main(int argc, char *argv[]) {
                 break;
             case 'f':
                 strcpy(file_name, optarg);
+                break;
+            case 'r':
+                removeElementFromArchive(optarg, file_name);
                 break;
             default:
                 printf("h\n");

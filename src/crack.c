@@ -57,6 +57,7 @@ int extractZIPWithBruteForce(const char* zipFileName, const char* dictionaryFile
                 }
 
                 FILE* outputFile = fopen(fileName, "wb");
+                puts(fileName);
                 if (!outputFile) {
                     //printf("Impossible de créer le fichier de sortie.\n");
                     zip_fclose(file);

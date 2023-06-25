@@ -1,1 +1,1 @@
-gcc main.c manage.c interface.c crack.c -lzip -o program
+gcc main.c manage.c interface.c crack.c -lzip -lunrar -o program

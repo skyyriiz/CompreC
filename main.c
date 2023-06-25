@@ -31,6 +31,8 @@ int main(int argc, char *argv[]) {
     char file_name[128];
     char fileToZip[256] = "";
     char password[256];
+    const char path[256] = "/home/mike/Documents/GitHub/CompreC/dick.txt";
+    const char fich[256] = "a.rar";
 
     while ((opt = getopt_long(argc, argv, "hf:b:d:p:e:o:i:c:r:", long_options, &long_index)) != -1) {
         switch (opt) {
@@ -48,7 +50,12 @@ int main(int argc, char *argv[]) {
 
                 break;
             case 'b':
-                printf("b");
+                if (extractZIPWithBruteForce(optarg, path) == -1) {
+                    printf("Brute Force attack failed\n");
+                    return -1;
+                } else {
+                    printf("Extraction done \n");
+                }
                 break;
             case 'd':
                 printf("d");
